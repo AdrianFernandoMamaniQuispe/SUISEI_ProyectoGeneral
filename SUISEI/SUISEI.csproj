@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{783EA2AF-3CAE-4FBA-80F1-2808AB48B260}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SUISEI</RootNamespace>
+    <AssemblyName>SUISEI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CONTROLADOR\ClsLogin.cs" />
+    <Compile Include="MODELO\BaseDatos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\BaseDatos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\BaseDatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Cliente.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Delivery.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\DetalleOperacion.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\DetalleRol.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\DetalleVenta.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Lote.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\OBTENER_CLIENTES_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\OBTENER_USUARIOS_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Operacion.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Pedido.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Producto.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Rol.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Usuario.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Venta.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VISTA\Buscar_Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Buscar_Cliente.Designer.cs">
+      <DependentUpon>Buscar_Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Buscar_Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Buscar_Producto.Designer.cs">
+      <DependentUpon>Buscar_Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\CambiarContra_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\CambiarContra_U.Designer.cs">
+      <DependentUpon>CambiarContra_U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Consultar_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Consultar_Venta.Designer.cs">
+      <DependentUpon>Consultar_Venta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Control_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Control_U.Designer.cs">
+      <DependentUpon>Control_U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Menu_Administrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Menu_Administrador.Designer.cs">
+      <DependentUpon>Menu_Administrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Menu_principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Menu_principal.Designer.cs">
+      <DependentUpon>Menu_principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Menu_Recepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Menu_Recepcion.Designer.cs">
+      <DependentUpon>Menu_Recepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Menu_Supervisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Menu_Supervisor.Designer.cs">
+      <DependentUpon>Menu_Supervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Menu_Vendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Menu_Vendedor.Designer.cs">
+      <DependentUpon>Menu_Vendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Recuperar_ContraU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Recuperar_ContraU.Designer.cs">
+      <DependentUpon>Recuperar_ContraU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_Cliente.Designer.cs">
+      <DependentUpon>Registro_Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_EDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_EDelivery.Designer.cs">
+      <DependentUpon>Registro_EDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_Lotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_Lotes.Designer.cs">
+      <DependentUpon>Registro_Lotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_Pedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_Pedido.Designer.cs">
+      <DependentUpon>Registro_Pedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_Producto.Designer.cs">
+      <DependentUpon>Registro_Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Registro_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Registro_Venta.Designer.cs">
+      <DependentUpon>Registro_Venta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Pedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Pedido.Designer.cs">
+      <DependentUpon>Reporte_Pedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Producto.Designer.cs">
+      <DependentUpon>Reporte_Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\Reporte_Ventas.Designer.cs">
+      <DependentUpon>Reporte_Ventas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="VISTA\Buscar_Cliente.resx">
+      <DependentUpon>Buscar_Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Buscar_Producto.resx">
+      <DependentUpon>Buscar_Producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\CambiarContra_U.resx">
+      <DependentUpon>CambiarContra_U.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Consultar_Venta.resx">
+      <DependentUpon>Consultar_Venta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Control_U.resx">
+      <DependentUpon>Control_U.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Menu_Administrador.resx">
+      <DependentUpon>Menu_Administrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Menu_principal.resx">
+      <DependentUpon>Menu_principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Menu_Recepcion.resx">
+      <DependentUpon>Menu_Recepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Menu_Supervisor.resx">
+      <DependentUpon>Menu_Supervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Menu_Vendedor.resx">
+      <DependentUpon>Menu_Vendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Recuperar_ContraU.resx">
+      <DependentUpon>Recuperar_ContraU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_Cliente.resx">
+      <DependentUpon>Registro_Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_EDelivery.resx">
+      <DependentUpon>Registro_EDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_Lotes.resx">
+      <DependentUpon>Registro_Lotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_Pedido.resx">
+      <DependentUpon>Registro_Pedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_Producto.resx">
+      <DependentUpon>Registro_Producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Registro_Venta.resx">
+      <DependentUpon>Registro_Venta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Reporte_Pedido.resx">
+      <DependentUpon>Reporte_Pedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Reporte_Producto.resx">
+      <DependentUpon>Reporte_Producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\Reporte_Ventas.resx">
+      <DependentUpon>Reporte_Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="MODELO\BaseDatos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BaseDatos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MODELO\BaseDatos.edmx.diagram">
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\anadir-simbolo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Buscar.consultar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\casilla-de-verificacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comprobar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\factura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\limpiar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seleccionar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\volver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoSuisei.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoSuiseiBlanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoSuiseiBlancoFondoNegro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anadir-simbolo_15px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Buscar.consultar_15px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comprobar_15px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config_15px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config_15px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pijamas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pijama1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fondo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MODELO\BaseDatos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BaseDatos.Context.cs</LastGenOutput>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+    </Content>
+    <Content Include="MODELO\BaseDatos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+      <LastGenOutput>BaseDatos.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

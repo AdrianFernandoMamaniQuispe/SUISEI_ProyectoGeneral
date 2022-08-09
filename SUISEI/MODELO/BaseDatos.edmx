@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SUISEIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_nombres" Type="varchar" MaxLength="50" />
+          <Property Name="c_paterno" Type="varchar" MaxLength="30" />
+          <Property Name="c_materno" Type="varchar" MaxLength="30" />
+          <Property Name="c_edad" Type="int" />
+          <Property Name="c_sexo" Type="char" MaxLength="1" />
+          <Property Name="c_direccion" Type="varchar" MaxLength="200" />
+          <Property Name="c_telefono" Type="varchar" MaxLength="11" />
+          <Property Name="c_dni" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id_delivey" />
+          </Key>
+          <Property Name="id_delivey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="d_ruc" Type="char" MaxLength="11" />
+          <Property Name="d_nombre" Type="varchar" MaxLength="50" />
+          <Property Name="d_telefono" Type="char" MaxLength="11" />
+          <Property Name="d_email" Type="varchar" MaxLength="50" />
+          <Property Name="d_direccion" Type="varchar" MaxLength="200" />
+          <Property Name="d_horario_atencion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DetalleOperacion">
+          <Key>
+            <PropertyRef Name="id_detalle_operacion" />
+          </Key>
+          <Property Name="id_detalle_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="do_id_operacion" Type="int" Nullable="false" />
+          <Property Name="do_id_producto" Type="int" Nullable="false" />
+          <Property Name="do_motivo" Type="varchar" MaxLength="200" />
+          <Property Name="do_cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="DetalleRol">
+          <Key>
+            <PropertyRef Name="id_detalle_rol" />
+          </Key>
+          <Property Name="id_detalle_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dr_id_rol" Type="int" Nullable="false" />
+          <Property Name="dr_id_usuario" Type="int" Nullable="false" />
+          <Property Name="dr_estado" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="id_detalle_venta" />
+          </Key>
+          <Property Name="id_detalle_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dv_id_venta" Type="int" Nullable="false" />
+          <Property Name="dv_id_producto" Type="int" Nullable="false" />
+          <Property Name="dv_cantidad" Type="varchar" MaxLength="200" />
+          <Property Name="dv_descuento" Type="int" />
+        </EntityType>
+        <EntityType Name="Lote">
+          <Key>
+            <PropertyRef Name="id_lote" />
+          </Key>
+          <Property Name="id_lote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="l_id_producto" Type="int" Nullable="false" />
+          <Property Name="l_stock" Type="int" />
+          <Property Name="l_fecha_produccion" Type="date" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="o_id_usuario" Type="int" Nullable="false" />
+          <Property Name="o_nombre" Type="varchar" MaxLength="10" />
+          <Property Name="o_fecha" Type="date" />
+          <Property Name="o_hora" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pe_id_delivery" Type="int" Nullable="false" />
+          <Property Name="pe_id_venta" Type="int" Nullable="false" />
+          <Property Name="pe_descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="pe_estado" Type="varchar" MaxLength="20" />
+          <Property Name="pe_fecha_entrega" Type="date" />
+          <Property Name="pe_hora_entrega" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_cod_barras" Type="char" MaxLength="12" />
+          <Property Name="p_modelo" Type="varchar" MaxLength="30" />
+          <Property Name="p_material" Type="varchar" MaxLength="30" />
+          <Property Name="p_talla" Type="char" MaxLength="2" />
+          <Property Name="p_precio" Type="float" />
+          <Property Name="p_stock" Type="int" />
+          <Property Name="p_estado" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="r_cargo" Type="varchar" MaxLength="20" />
+          <Property Name="r_sueldo" Type="float" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_nom_usuario" Type="char" MaxLength="11" />
+          <Property Name="u_nombres" Type="char" MaxLength="50" />
+          <Property Name="u_paterno" Type="varchar" MaxLength="30" />
+          <Property Name="u_materno" Type="varchar" MaxLength="30" />
+          <Property Name="u_edad" Type="int" />
+          <Property Name="u_sexo" Type="char" MaxLength="1" />
+          <Property Name="u_direccion" Type="varchar" MaxLength="200" />
+          <Property Name="u_telefono" Type="varchar" MaxLength="11" />
+          <Property Name="u_dni" Type="varchar" MaxLength="8" />
+          <Property Name="u_estado" Type="varchar" MaxLength="10" />
+          <Property Name="u_clave" Type="varchar" MaxLength="30" />
+          <Property Name="u_respuesta_rec" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_id_usuario" Type="int" Nullable="false" />
+          <Property Name="v_id_cliente" Type="int" Nullable="false" />
+          <Property Name="v_metodo_pago" Type="varchar" MaxLength="30" />
+          <Property Name="v_total" Type="float" />
+          <Property Name="v_fecha" Type="date" />
+          <Property Name="v_hora" Type="time" Precision="7" />
+          <Property Name="v_estado" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="fk_do_id_operacion">
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="1" />
+          <End Role="DetalleOperacion" Type="Self.DetalleOperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operacion">
+              <PropertyRef Name="id_operacion" />
+            </Principal>
+            <Dependent Role="DetalleOperacion">
+              <PropertyRef Name="do_id_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_do_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetalleOperacion" Type="Self.DetalleOperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="DetalleOperacion">
+              <PropertyRef Name="do_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dr_id_rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="DetalleRol" Type="Self.DetalleRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="DetalleRol">
+              <PropertyRef Name="dr_id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dr_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="DetalleRol" Type="Self.DetalleRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="DetalleRol">
+              <PropertyRef Name="dr_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dv_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="dv_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dv_id_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="dv_id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_l_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="l_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_o_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="o_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pe_id_delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="id_delivey" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="pe_id_delivery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pe_id_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="pe_id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_v_id_cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="v_id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_v_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="v_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="OBTENER_CLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iClienteId" Type="int" Mode="In" />
+          <Parameter Name="iNombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="OBTENER_CREDENCIALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUsuarioId" Type="int" Mode="In" />
+          <Parameter Name="iNombreUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="iClave" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="OBTENER_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUsuarioId" Type="int" Mode="In" />
+          <Parameter Name="iNombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SUISEIModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleOperacion" EntityType="Self.DetalleOperacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleRol" EntityType="Self.DetalleRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lote" EntityType="Self.Lote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operacion" EntityType="Self.Operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_do_id_operacion" Association="Self.fk_do_id_operacion">
+            <End Role="Operacion" EntitySet="Operacion" />
+            <End Role="DetalleOperacion" EntitySet="DetalleOperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_do_id_producto" Association="Self.fk_do_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleOperacion" EntitySet="DetalleOperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dr_id_rol" Association="Self.fk_dr_id_rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="DetalleRol" EntitySet="DetalleRol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dr_id_usuario" Association="Self.fk_dr_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DetalleRol" EntitySet="DetalleRol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dv_id_producto" Association="Self.fk_dv_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dv_id_venta" Association="Self.fk_dv_id_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_l_id_producto" Association="Self.fk_l_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <AssociationSet Name="fk_o_id_usuario" Association="Self.fk_o_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pe_id_delivery" Association="Self.fk_pe_id_delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pe_id_venta" Association="Self.fk_pe_id_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_v_id_cliente" Association="Self.fk_v_id_cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_v_id_usuario" Association="Self.fk_v_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SUISEIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="c_paterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="c_materno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="c_edad" Type="Int32" />
+          <Property Name="c_sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="c_direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="c_telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="c_dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Venta" Relationship="Self.fk_v_id_cliente" FromRole="Cliente" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="id_delivey" />
+          </Key>
+          <Property Name="id_delivey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="d_ruc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="d_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="d_telefono" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="d_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="d_direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="d_horario_atencion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.fk_pe_id_delivery" FromRole="Delivery" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="DetalleOperacion">
+          <Key>
+            <PropertyRef Name="id_detalle_operacion" />
+          </Key>
+          <Property Name="id_detalle_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="do_id_operacion" Type="Int32" Nullable="false" />
+          <Property Name="do_id_producto" Type="Int32" Nullable="false" />
+          <Property Name="do_motivo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="do_cantidad" Type="Int32" />
+          <NavigationProperty Name="Operacion" Relationship="Self.fk_do_id_operacion" FromRole="DetalleOperacion" ToRole="Operacion" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_do_id_producto" FromRole="DetalleOperacion" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="DetalleRol">
+          <Key>
+            <PropertyRef Name="id_detalle_rol" />
+          </Key>
+          <Property Name="id_detalle_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dr_id_rol" Type="Int32" Nullable="false" />
+          <Property Name="dr_id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="dr_estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.fk_dr_id_rol" FromRole="DetalleRol" ToRole="Rol" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_dr_id_usuario" FromRole="DetalleRol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="id_detalle_venta" />
+          </Key>
+          <Property Name="id_detalle_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dv_id_venta" Type="Int32" Nullable="false" />
+          <Property Name="dv_id_producto" Type="Int32" Nullable="false" />
+          <Property Name="dv_cantidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dv_descuento" Type="Int32" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_dv_id_producto" FromRole="DetalleVenta" ToRole="Producto" />
+          <NavigationProperty Name="Venta" Relationship="Self.fk_dv_id_venta" FromRole="DetalleVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Lote">
+          <Key>
+            <PropertyRef Name="id_lote" />
+          </Key>
+          <Property Name="id_lote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="l_id_producto" Type="Int32" Nullable="false" />
+          <Property Name="l_stock" Type="Int32" />
+          <Property Name="l_fecha_produccion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_l_id_producto" FromRole="Lote" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="o_id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="o_nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="o_fecha" Type="DateTime" Precision="0" />
+          <Property Name="o_hora" Type="Time" Precision="7" />
+          <NavigationProperty Name="DetalleOperacion" Relationship="Self.fk_do_id_operacion" FromRole="Operacion" ToRole="DetalleOperacion" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_o_id_usuario" FromRole="Operacion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pe_id_delivery" Type="Int32" Nullable="false" />
+          <Property Name="pe_id_venta" Type="Int32" Nullable="false" />
+          <Property Name="pe_descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pe_estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pe_fecha_entrega" Type="DateTime" Precision="0" />
+          <Property Name="pe_hora_entrega" Type="Time" Precision="7" />
+          <NavigationProperty Name="Delivery" Relationship="Self.fk_pe_id_delivery" FromRole="Pedido" ToRole="Delivery" />
+          <NavigationProperty Name="Venta" Relationship="Self.fk_pe_id_venta" FromRole="Pedido" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_cod_barras" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="p_modelo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="p_material" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="p_talla" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="p_precio" Type="Double" />
+          <Property Name="p_stock" Type="Int32" />
+          <Property Name="p_estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DetalleOperacion" Relationship="Self.fk_do_id_producto" FromRole="Producto" ToRole="DetalleOperacion" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.fk_dv_id_producto" FromRole="Producto" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Lote" Relationship="Self.fk_l_id_producto" FromRole="Producto" ToRole="Lote" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="r_cargo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="r_sueldo" Type="Double" />
+          <NavigationProperty Name="DetalleRol" Relationship="Self.fk_dr_id_rol" FromRole="Rol" ToRole="DetalleRol" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_nom_usuario" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="u_nombres" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="u_paterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="u_materno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="u_edad" Type="Int32" />
+          <Property Name="u_sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="u_direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="u_telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="u_dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="u_estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="u_clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="u_respuesta_rec" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DetalleRol" Relationship="Self.fk_dr_id_usuario" FromRole="Usuario" ToRole="DetalleRol" />
+          <NavigationProperty Name="Operacion" Relationship="Self.fk_o_id_usuario" FromRole="Usuario" ToRole="Operacion" />
+          <NavigationProperty Name="Venta" Relationship="Self.fk_v_id_usuario" FromRole="Usuario" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="v_id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="v_metodo_pago" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="v_total" Type="Double" />
+          <Property Name="v_fecha" Type="DateTime" Precision="0" />
+          <Property Name="v_hora" Type="Time" Precision="7" />
+          <Property Name="v_estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_v_id_cliente" FromRole="Venta" ToRole="Cliente" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.fk_dv_id_venta" FromRole="Venta" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Pedido" Relationship="Self.fk_pe_id_venta" FromRole="Venta" ToRole="Pedido" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_v_id_usuario" FromRole="Venta" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="fk_v_id_cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="v_id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pe_id_delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="id_delivey" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="pe_id_delivery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_do_id_operacion">
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="1" />
+          <End Role="DetalleOperacion" Type="Self.DetalleOperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operacion">
+              <PropertyRef Name="id_operacion" />
+            </Principal>
+            <Dependent Role="DetalleOperacion">
+              <PropertyRef Name="do_id_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_do_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetalleOperacion" Type="Self.DetalleOperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="DetalleOperacion">
+              <PropertyRef Name="do_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dr_id_rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="DetalleRol" Type="Self.DetalleRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="DetalleRol">
+              <PropertyRef Name="dr_id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dr_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="DetalleRol" Type="Self.DetalleRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="DetalleRol">
+              <PropertyRef Name="dr_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dv_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="dv_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dv_id_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="dv_id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_l_id_producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="l_id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_o_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="o_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pe_id_venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="pe_id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_v_id_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="v_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SUISEIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" />
+          <EntitySet Name="DetalleOperacion" EntityType="Self.DetalleOperacion" />
+          <EntitySet Name="DetalleRol" EntityType="Self.DetalleRol" />
+          <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" />
+          <EntitySet Name="Lote" EntityType="Self.Lote" />
+          <EntitySet Name="Operacion" EntityType="Self.Operacion" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <AssociationSet Name="fk_v_id_cliente" Association="Self.fk_v_id_cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pe_id_delivery" Association="Self.fk_pe_id_delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_do_id_operacion" Association="Self.fk_do_id_operacion">
+            <End Role="Operacion" EntitySet="Operacion" />
+            <End Role="DetalleOperacion" EntitySet="DetalleOperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_do_id_producto" Association="Self.fk_do_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleOperacion" EntitySet="DetalleOperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dr_id_rol" Association="Self.fk_dr_id_rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="DetalleRol" EntitySet="DetalleRol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dr_id_usuario" Association="Self.fk_dr_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DetalleRol" EntitySet="DetalleRol" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dv_id_producto" Association="Self.fk_dv_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dv_id_venta" Association="Self.fk_dv_id_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="fk_l_id_producto" Association="Self.fk_l_id_producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <AssociationSet Name="fk_o_id_usuario" Association="Self.fk_o_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pe_id_venta" Association="Self.fk_pe_id_venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_v_id_usuario" Association="Self.fk_v_id_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <FunctionImport Name="OBTENER_CLIENTES" ReturnType="Collection(SUISEIModel.OBTENER_CLIENTES_Result)">
+            <Parameter Name="iClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="iNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OBTENER_USUARIOS" ReturnType="Collection(SUISEIModel.OBTENER_USUARIOS_Result)">
+            <Parameter Name="iUsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="iNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OBTENER_CREDENCIALES" ReturnType="Collection(String)">
+            <Parameter Name="iUsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="iNombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="iClave" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="OBTENER_CLIENTES_Result">
+          <Property Type="Int32" Name="id_cliente" Nullable="false" />
+          <Property Type="String" Name="CLIENTE" Nullable="true" MaxLength="112" />
+          <Property Type="Int32" Name="c_edad" Nullable="true" />
+          <Property Type="String" Name="c_sexo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="c_direccion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="c_telefono" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="c_dni" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="OBTENER_USUARIOS_Result">
+          <Property Type="Int32" Name="id_usuario" Nullable="false" />
+          <Property Type="String" Name="USUARIO" Nullable="true" MaxLength="112" />
+          <Property Type="Int32" Name="u_edad" Nullable="true" />
+          <Property Type="String" Name="u_sexo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="u_direccion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="u_telefono" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="u_dni" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="r_cargo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="r_sueldo" Nullable="true" />
+          <Property Type="String" Name="u_estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SUISEIModelStoreContainer" CdmEntityContainer="SUISEIEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="SUISEIModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="c_nombres" ColumnName="c_nombres" />
+                <ScalarProperty Name="c_paterno" ColumnName="c_paterno" />
+                <ScalarProperty Name="c_materno" ColumnName="c_materno" />
+                <ScalarProperty Name="c_edad" ColumnName="c_edad" />
+                <ScalarProperty Name="c_sexo" ColumnName="c_sexo" />
+                <ScalarProperty Name="c_direccion" ColumnName="c_direccion" />
+                <ScalarProperty Name="c_telefono" ColumnName="c_telefono" />
+                <ScalarProperty Name="c_dni" ColumnName="c_dni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivery">
+            <EntityTypeMapping TypeName="SUISEIModel.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="id_delivey" ColumnName="id_delivey" />
+                <ScalarProperty Name="d_ruc" ColumnName="d_ruc" />
+                <ScalarProperty Name="d_nombre" ColumnName="d_nombre" />
+                <ScalarProperty Name="d_telefono" ColumnName="d_telefono" />
+                <ScalarProperty Name="d_email" ColumnName="d_email" />
+                <ScalarProperty Name="d_direccion" ColumnName="d_direccion" />
+                <ScalarProperty Name="d_horario_atencion" ColumnName="d_horario_atencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleOperacion">
+            <EntityTypeMapping TypeName="SUISEIModel.DetalleOperacion">
+              <MappingFragment StoreEntitySet="DetalleOperacion">
+                <ScalarProperty Name="id_detalle_operacion" ColumnName="id_detalle_operacion" />
+                <ScalarProperty Name="do_id_operacion" ColumnName="do_id_operacion" />
+                <ScalarProperty Name="do_id_producto" ColumnName="do_id_producto" />
+                <ScalarProperty Name="do_motivo" ColumnName="do_motivo" />
+                <ScalarProperty Name="do_cantidad" ColumnName="do_cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleRol">
+            <EntityTypeMapping TypeName="SUISEIModel.DetalleRol">
+              <MappingFragment StoreEntitySet="DetalleRol">
+                <ScalarProperty Name="id_detalle_rol" ColumnName="id_detalle_rol" />
+                <ScalarProperty Name="dr_id_rol" ColumnName="dr_id_rol" />
+                <ScalarProperty Name="dr_id_usuario" ColumnName="dr_id_usuario" />
+                <ScalarProperty Name="dr_estado" ColumnName="dr_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleVenta">
+            <EntityTypeMapping TypeName="SUISEIModel.DetalleVenta">
+              <MappingFragment StoreEntitySet="DetalleVenta">
+                <ScalarProperty Name="id_detalle_venta" ColumnName="id_detalle_venta" />
+                <ScalarProperty Name="dv_id_venta" ColumnName="dv_id_venta" />
+                <ScalarProperty Name="dv_id_producto" ColumnName="dv_id_producto" />
+                <ScalarProperty Name="dv_cantidad" ColumnName="dv_cantidad" />
+                <ScalarProperty Name="dv_descuento" ColumnName="dv_descuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lote">
+            <EntityTypeMapping TypeName="SUISEIModel.Lote">
+              <MappingFragment StoreEntitySet="Lote">
+                <ScalarProperty Name="id_lote" ColumnName="id_lote" />
+                <ScalarProperty Name="l_id_producto" ColumnName="l_id_producto" />
+                <ScalarProperty Name="l_stock" ColumnName="l_stock" />
+                <ScalarProperty Name="l_fecha_produccion" ColumnName="l_fecha_produccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operacion">
+            <EntityTypeMapping TypeName="SUISEIModel.Operacion">
+              <MappingFragment StoreEntitySet="Operacion">
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+                <ScalarProperty Name="o_id_usuario" ColumnName="o_id_usuario" />
+                <ScalarProperty Name="o_nombre" ColumnName="o_nombre" />
+                <ScalarProperty Name="o_fecha" ColumnName="o_fecha" />
+                <ScalarProperty Name="o_hora" ColumnName="o_hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="SUISEIModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="pe_id_delivery" ColumnName="pe_id_delivery" />
+                <ScalarProperty Name="pe_id_venta" ColumnName="pe_id_venta" />
+                <ScalarProperty Name="pe_descripcion" ColumnName="pe_descripcion" />
+                <ScalarProperty Name="pe_estado" ColumnName="pe_estado" />
+                <ScalarProperty Name="pe_fecha_entrega" ColumnName="pe_fecha_entrega" />
+                <ScalarProperty Name="pe_hora_entrega" ColumnName="pe_hora_entrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="SUISEIModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="p_cod_barras" ColumnName="p_cod_barras" />
+                <ScalarProperty Name="p_modelo" ColumnName="p_modelo" />
+                <ScalarProperty Name="p_material" ColumnName="p_material" />
+                <ScalarProperty Name="p_talla" ColumnName="p_talla" />
+                <ScalarProperty Name="p_precio" ColumnName="p_precio" />
+                <ScalarProperty Name="p_stock" ColumnName="p_stock" />
+                <ScalarProperty Name="p_estado" ColumnName="p_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="SUISEIModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="r_cargo" ColumnName="r_cargo" />
+                <ScalarProperty Name="r_sueldo" ColumnName="r_sueldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SUISEIModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="u_nom_usuario" ColumnName="u_nom_usuario" />
+                <ScalarProperty Name="u_nombres" ColumnName="u_nombres" />
+                <ScalarProperty Name="u_paterno" ColumnName="u_paterno" />
+                <ScalarProperty Name="u_materno" ColumnName="u_materno" />
+                <ScalarProperty Name="u_edad" ColumnName="u_edad" />
+                <ScalarProperty Name="u_sexo" ColumnName="u_sexo" />
+                <ScalarProperty Name="u_direccion" ColumnName="u_direccion" />
+                <ScalarProperty Name="u_telefono" ColumnName="u_telefono" />
+                <ScalarProperty Name="u_dni" ColumnName="u_dni" />
+                <ScalarProperty Name="u_estado" ColumnName="u_estado" />
+                <ScalarProperty Name="u_clave" ColumnName="u_clave" />
+                <ScalarProperty Name="u_respuesta_rec" ColumnName="u_respuesta_rec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="SUISEIModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="v_id_usuario" ColumnName="v_id_usuario" />
+                <ScalarProperty Name="v_id_cliente" ColumnName="v_id_cliente" />
+                <ScalarProperty Name="v_metodo_pago" ColumnName="v_metodo_pago" />
+                <ScalarProperty Name="v_total" ColumnName="v_total" />
+                <ScalarProperty Name="v_fecha" ColumnName="v_fecha" />
+                <ScalarProperty Name="v_hora" ColumnName="v_hora" />
+                <ScalarProperty Name="v_estado" ColumnName="v_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="OBTENER_CLIENTES" FunctionName="SUISEIModel.Store.OBTENER_CLIENTES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SUISEIModel.OBTENER_CLIENTES_Result">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="CLIENTE" ColumnName="CLIENTE" />
+                <ScalarProperty Name="c_edad" ColumnName="c_edad" />
+                <ScalarProperty Name="c_sexo" ColumnName="c_sexo" />
+                <ScalarProperty Name="c_direccion" ColumnName="c_direccion" />
+                <ScalarProperty Name="c_telefono" ColumnName="c_telefono" />
+                <ScalarProperty Name="c_dni" ColumnName="c_dni" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OBTENER_USUARIOS" FunctionName="SUISEIModel.Store.OBTENER_USUARIOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SUISEIModel.OBTENER_USUARIOS_Result">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="u_edad" ColumnName="u_edad" />
+                <ScalarProperty Name="u_sexo" ColumnName="u_sexo" />
+                <ScalarProperty Name="u_direccion" ColumnName="u_direccion" />
+                <ScalarProperty Name="u_telefono" ColumnName="u_telefono" />
+                <ScalarProperty Name="u_dni" ColumnName="u_dni" />
+                <ScalarProperty Name="r_cargo" ColumnName="r_cargo" />
+                <ScalarProperty Name="r_sueldo" ColumnName="r_sueldo" />
+                <ScalarProperty Name="u_estado" ColumnName="u_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OBTENER_CREDENCIALES" FunctionName="SUISEIModel.Store.OBTENER_CREDENCIALES" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
