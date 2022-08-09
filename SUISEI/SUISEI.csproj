@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONTROLADOR\ClsEmpresaDelivery.cs" />
     <Compile Include="CONTROLADOR\ClsLogin.cs" />
     <Compile Include="MODELO\BaseDatos.Context.cs">
       <AutoGen>True</AutoGen>
