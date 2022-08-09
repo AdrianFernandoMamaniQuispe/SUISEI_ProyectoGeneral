@@ -53,7 +53,7 @@
             this.txtInicio = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvEDelivery = new System.Windows.Forms.DataGridView();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEDelivery)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -298,13 +298,13 @@
             this.btnAgregar.Text = "AGREGAR";
             this.btnAgregar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvEDelivery
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 483);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(775, 205);
-            this.dataGridView1.TabIndex = 34;
+            this.dgvEDelivery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEDelivery.Location = new System.Drawing.Point(13, 483);
+            this.dgvEDelivery.Name = "dgvEDelivery";
+            this.dgvEDelivery.Size = new System.Drawing.Size(775, 205);
+            this.dgvEDelivery.TabIndex = 34;
             // 
             // btnEliminar
             // 
@@ -342,7 +342,7 @@
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvEDelivery);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -360,7 +360,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEDelivery)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,7 +393,7 @@
         private System.Windows.Forms.TextBox txtInicio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEDelivery;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnRegistrar;
