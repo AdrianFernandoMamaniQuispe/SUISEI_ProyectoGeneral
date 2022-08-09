@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnComprobar = new System.Windows.Forms.Button();
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -76,7 +76,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnComprobar);
             this.groupBox2.Controls.Add(this.txtRuc);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Location = new System.Drawing.Point(12, 91);
@@ -86,14 +86,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "RUC de Delivery";
             // 
-            // button1
+            // btnComprobar
             // 
-            this.button1.Location = new System.Drawing.Point(641, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 29);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "COMPROBAR";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnComprobar.Location = new System.Drawing.Point(641, 30);
+            this.btnComprobar.Name = "btnComprobar";
+            this.btnComprobar.Size = new System.Drawing.Size(107, 29);
+            this.btnComprobar.TabIndex = 32;
+            this.btnComprobar.Text = "COMPROBAR";
+            this.btnComprobar.UseVisualStyleBackColor = true;
             // 
             // txtRuc
             // 
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnComprobar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label11;
