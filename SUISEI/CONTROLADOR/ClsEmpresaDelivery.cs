@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SUISEI.MODELO;
 
 namespace SUISEI.CONTROLADOR
 {
@@ -14,7 +15,7 @@ namespace SUISEI.CONTROLADOR
         public List<Delivery> ListarEmpresasDeliveries()
         {
 
-            using (SUISEIv3Entities bd = new SUISEIv3Entities())
+            using (SUISEIEntities bd = new SUISEIEntities())
             {
                 return bd.Delivery.ToList();
             }
@@ -29,7 +30,7 @@ namespace SUISEI.CONTROLADOR
         {
 
 
-            using (SUISEIv3Entities bd = new SUISEIv3Entities())
+            using (SUISEIEntities bd = new SUISEIEntities())
             {
                 //================================== INSTANCIAMOS datosDelivery DEL TIPO Delivery ================================
                 Delivery datosDelivery = new Delivery();

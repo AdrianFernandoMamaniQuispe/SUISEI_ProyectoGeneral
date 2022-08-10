@@ -287,18 +287,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ELIMINAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="INSERTAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iNombres" Type="varchar" Mode="In" />
+          <Parameter Name="iApellidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="iApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="iEdad" Type="int" Mode="In" />
+          <Parameter Name="iSexo" Type="char" Mode="In" />
+          <Parameter Name="iDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="iTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="iDni" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="MODIFICAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="iNombres" Type="varchar" Mode="In" />
+          <Parameter Name="iApellidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="iApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="iEdad" Type="int" Mode="In" />
+          <Parameter Name="iSexo" Type="char" Mode="In" />
+          <Parameter Name="iDireccion" Type="varchar" Mode="In" />
+          <Parameter Name="iTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="iDni" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="OBTENER_CLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="iClienteId" Type="int" Mode="In" />
           <Parameter Name="iNombre" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="OBTENER_CREDENCIALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="iUsuarioId" Type="int" Mode="In" />
-          <Parameter Name="iNombreUsuario" Type="nvarchar" Mode="In" />
-          <Parameter Name="iClave" Type="nvarchar" Mode="In" />
+        <Function Name="OBTENER_CLIENTES_2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iClienteId" Type="int" Mode="In" />
+          <Parameter Name="iNombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="OBTENER_PRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="barras" Type="nvarchar" Mode="In" />
+          <Parameter Name="iModelo" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="OBTENER_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="iUsuarioId" Type="int" Mode="In" />
           <Parameter Name="iNombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="OBTENER_VENTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idVenta" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="SUISEIModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
@@ -746,6 +778,43 @@
             <Parameter Name="iNombreUsuario" Mode="In" Type="String" />
             <Parameter Name="iClave" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ELIMINAR_CLIENTE">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTAR_CLIENTE">
+            <Parameter Name="iNombres" Mode="In" Type="String" />
+            <Parameter Name="iApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="iApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="iEdad" Mode="In" Type="Int32" />
+            <Parameter Name="iSexo" Mode="In" Type="String" />
+            <Parameter Name="iDireccion" Mode="In" Type="String" />
+            <Parameter Name="iTelefono" Mode="In" Type="String" />
+            <Parameter Name="iDni" Mode="In" Type="String" />
+            <Parameter Name="idCliente" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICAR_CLIENTE">
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="iNombres" Mode="In" Type="String" />
+            <Parameter Name="iApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="iApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="iEdad" Mode="In" Type="Int32" />
+            <Parameter Name="iSexo" Mode="In" Type="String" />
+            <Parameter Name="iDireccion" Mode="In" Type="String" />
+            <Parameter Name="iTelefono" Mode="In" Type="String" />
+            <Parameter Name="iDni" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OBTENER_CLIENTES_2" ReturnType="Collection(SUISEIModel.OBTENER_CLIENTES_2_Result)">
+            <Parameter Name="iClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="iNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OBTENER_PRODUCTOS" ReturnType="Collection(SUISEIModel.OBTENER_PRODUCTOS_Result)">
+            <Parameter Name="barras" Mode="In" Type="String" />
+            <Parameter Name="iModelo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OBTENER_VENTAS" ReturnType="Collection(SUISEIModel.OBTENER_VENTAS_Result)">
+            <Parameter Name="idVenta" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="OBTENER_CLIENTES_Result">
           <Property Type="Int32" Name="id_cliente" Nullable="false" />
@@ -767,6 +836,35 @@
           <Property Type="String" Name="r_cargo" Nullable="true" MaxLength="20" />
           <Property Type="Double" Name="r_sueldo" Nullable="true" />
           <Property Type="String" Name="u_estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="OBTENER_CLIENTES_2_Result">
+          <Property Type="Int32" Name="id_cliente" Nullable="false" />
+          <Property Type="String" Name="c_paterno" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="c_materno" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="c_nombres" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="c_edad" Nullable="true" />
+          <Property Type="String" Name="c_sexo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="c_direccion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="c_telefono" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="c_dni" Nullable="true" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="OBTENER_PRODUCTOS_Result">
+          <Property Type="String" Name="p_cod_barras" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="p_modelo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="p_material" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="p_talla" Nullable="true" MaxLength="2" />
+          <Property Type="Double" Name="p_precio" Nullable="true" />
+          <Property Type="Int32" Name="p_stock" Nullable="true" />
+          <Property Type="String" Name="p_estado" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="OBTENER_VENTAS_Result">
+          <Property Type="Int32" Name="id_venta" Nullable="false" />
+          <Property Type="Int32" Name="v_id_usuario" Nullable="false" />
+          <Property Type="Int32" Name="v_id_cliente" Nullable="false" />
+          <Property Type="String" Name="v_metodo_pago" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="v_total" Nullable="true" />
+          <Property Type="DateTime" Name="v_fecha" Nullable="true" />
+          <Property Type="String" Name="v_estado" Nullable="true" MaxLength="15" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -953,7 +1051,50 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="OBTENER_CREDENCIALES" FunctionName="SUISEIModel.Store.OBTENER_CREDENCIALES" />
+          <FunctionImportMapping FunctionImportName="ELIMINAR_CLIENTE" FunctionName="SUISEIModel.Store.ELIMINAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="INSERTAR_CLIENTE" FunctionName="SUISEIModel.Store.INSERTAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="MODIFICAR_CLIENTE" FunctionName="SUISEIModel.Store.MODIFICAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="OBTENER_CLIENTES_2" FunctionName="SUISEIModel.Store.OBTENER_CLIENTES_2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SUISEIModel.OBTENER_CLIENTES_2_Result">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="c_paterno" ColumnName="c_paterno" />
+                <ScalarProperty Name="c_materno" ColumnName="c_materno" />
+                <ScalarProperty Name="c_nombres" ColumnName="c_nombres" />
+                <ScalarProperty Name="c_edad" ColumnName="c_edad" />
+                <ScalarProperty Name="c_sexo" ColumnName="c_sexo" />
+                <ScalarProperty Name="c_direccion" ColumnName="c_direccion" />
+                <ScalarProperty Name="c_telefono" ColumnName="c_telefono" />
+                <ScalarProperty Name="c_dni" ColumnName="c_dni" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OBTENER_PRODUCTOS" FunctionName="SUISEIModel.Store.OBTENER_PRODUCTOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SUISEIModel.OBTENER_PRODUCTOS_Result">
+                <ScalarProperty Name="p_cod_barras" ColumnName="p_cod_barras" />
+                <ScalarProperty Name="p_modelo" ColumnName="p_modelo" />
+                <ScalarProperty Name="p_material" ColumnName="p_material" />
+                <ScalarProperty Name="p_talla" ColumnName="p_talla" />
+                <ScalarProperty Name="p_precio" ColumnName="p_precio" />
+                <ScalarProperty Name="p_stock" ColumnName="p_stock" />
+                <ScalarProperty Name="p_estado" ColumnName="p_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OBTENER_VENTAS" FunctionName="SUISEIModel.Store.OBTENER_VENTAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SUISEIModel.OBTENER_VENTAS_Result">
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="v_id_usuario" ColumnName="v_id_usuario" />
+                <ScalarProperty Name="v_id_cliente" ColumnName="v_id_cliente" />
+                <ScalarProperty Name="v_metodo_pago" ColumnName="v_metodo_pago" />
+                <ScalarProperty Name="v_total" ColumnName="v_total" />
+                <ScalarProperty Name="v_fecha" ColumnName="v_fecha" />
+                <ScalarProperty Name="v_estado" ColumnName="v_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

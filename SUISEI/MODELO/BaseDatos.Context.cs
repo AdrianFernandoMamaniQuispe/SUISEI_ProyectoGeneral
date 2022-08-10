@@ -82,5 +82,131 @@ namespace SUISEI.MODELO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("OBTENER_CREDENCIALES", iUsuarioIdParameter, iNombreUsuarioParameter, iClaveParameter);
         }
+    
+        public virtual int ELIMINAR_CLIENTE(Nullable<int> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINAR_CLIENTE", idClienteParameter);
+        }
+    
+        public virtual int INSERTAR_CLIENTE(string iNombres, string iApellidoPaterno, string iApellidoMaterno, Nullable<int> iEdad, string iSexo, string iDireccion, string iTelefono, string iDni, ObjectParameter idCliente)
+        {
+            var iNombresParameter = iNombres != null ?
+                new ObjectParameter("iNombres", iNombres) :
+                new ObjectParameter("iNombres", typeof(string));
+    
+            var iApellidoPaternoParameter = iApellidoPaterno != null ?
+                new ObjectParameter("iApellidoPaterno", iApellidoPaterno) :
+                new ObjectParameter("iApellidoPaterno", typeof(string));
+    
+            var iApellidoMaternoParameter = iApellidoMaterno != null ?
+                new ObjectParameter("iApellidoMaterno", iApellidoMaterno) :
+                new ObjectParameter("iApellidoMaterno", typeof(string));
+    
+            var iEdadParameter = iEdad.HasValue ?
+                new ObjectParameter("iEdad", iEdad) :
+                new ObjectParameter("iEdad", typeof(int));
+    
+            var iSexoParameter = iSexo != null ?
+                new ObjectParameter("iSexo", iSexo) :
+                new ObjectParameter("iSexo", typeof(string));
+    
+            var iDireccionParameter = iDireccion != null ?
+                new ObjectParameter("iDireccion", iDireccion) :
+                new ObjectParameter("iDireccion", typeof(string));
+    
+            var iTelefonoParameter = iTelefono != null ?
+                new ObjectParameter("iTelefono", iTelefono) :
+                new ObjectParameter("iTelefono", typeof(string));
+    
+            var iDniParameter = iDni != null ?
+                new ObjectParameter("iDni", iDni) :
+                new ObjectParameter("iDni", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTAR_CLIENTE", iNombresParameter, iApellidoPaternoParameter, iApellidoMaternoParameter, iEdadParameter, iSexoParameter, iDireccionParameter, iTelefonoParameter, iDniParameter, idCliente);
+        }
+    
+        public virtual int MODIFICAR_CLIENTE(Nullable<int> idCliente, string iNombres, string iApellidoPaterno, string iApellidoMaterno, Nullable<int> iEdad, string iSexo, string iDireccion, string iTelefono, string iDni)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var iNombresParameter = iNombres != null ?
+                new ObjectParameter("iNombres", iNombres) :
+                new ObjectParameter("iNombres", typeof(string));
+    
+            var iApellidoPaternoParameter = iApellidoPaterno != null ?
+                new ObjectParameter("iApellidoPaterno", iApellidoPaterno) :
+                new ObjectParameter("iApellidoPaterno", typeof(string));
+    
+            var iApellidoMaternoParameter = iApellidoMaterno != null ?
+                new ObjectParameter("iApellidoMaterno", iApellidoMaterno) :
+                new ObjectParameter("iApellidoMaterno", typeof(string));
+    
+            var iEdadParameter = iEdad.HasValue ?
+                new ObjectParameter("iEdad", iEdad) :
+                new ObjectParameter("iEdad", typeof(int));
+    
+            var iSexoParameter = iSexo != null ?
+                new ObjectParameter("iSexo", iSexo) :
+                new ObjectParameter("iSexo", typeof(string));
+    
+            var iDireccionParameter = iDireccion != null ?
+                new ObjectParameter("iDireccion", iDireccion) :
+                new ObjectParameter("iDireccion", typeof(string));
+    
+            var iTelefonoParameter = iTelefono != null ?
+                new ObjectParameter("iTelefono", iTelefono) :
+                new ObjectParameter("iTelefono", typeof(string));
+    
+            var iDniParameter = iDni != null ?
+                new ObjectParameter("iDni", iDni) :
+                new ObjectParameter("iDni", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICAR_CLIENTE", idClienteParameter, iNombresParameter, iApellidoPaternoParameter, iApellidoMaternoParameter, iEdadParameter, iSexoParameter, iDireccionParameter, iTelefonoParameter, iDniParameter);
+        }
+    
+        public virtual ObjectResult<OBTENER_CLIENTES_2_Result> OBTENER_CLIENTES_2(Nullable<int> iClienteId, string iNombre)
+        {
+            var iClienteIdParameter = iClienteId.HasValue ?
+                new ObjectParameter("iClienteId", iClienteId) :
+                new ObjectParameter("iClienteId", typeof(int));
+    
+            var iNombreParameter = iNombre != null ?
+                new ObjectParameter("iNombre", iNombre) :
+                new ObjectParameter("iNombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_CLIENTES_2_Result>("OBTENER_CLIENTES_2", iClienteIdParameter, iNombreParameter);
+        }
+    
+        public virtual ObjectResult<OBTENER_PRODUCTOS_Result> OBTENER_PRODUCTOS(string barras, string iModelo)
+        {
+            var barrasParameter = barras != null ?
+                new ObjectParameter("barras", barras) :
+                new ObjectParameter("barras", typeof(string));
+    
+            var iModeloParameter = iModelo != null ?
+                new ObjectParameter("iModelo", iModelo) :
+                new ObjectParameter("iModelo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_PRODUCTOS_Result>("OBTENER_PRODUCTOS", barrasParameter, iModeloParameter);
+        }
+    
+        public virtual ObjectResult<OBTENER_VENTAS_Result> OBTENER_VENTAS(Nullable<int> idVenta, string idCliente)
+        {
+            var idVentaParameter = idVenta.HasValue ?
+                new ObjectParameter("idVenta", idVenta) :
+                new ObjectParameter("idVenta", typeof(int));
+    
+            var idClienteParameter = idCliente != null ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_VENTAS_Result>("OBTENER_VENTAS", idVentaParameter, idClienteParameter);
+        }
     }
 }
